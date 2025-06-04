@@ -23,7 +23,13 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
           Text(currentQuestion.question, style: TextStyle(color: Colors.white)),
           SizedBox(height: 20),
           ...currentQuestion.answers.map((answer) {
-            return AnswerButton(answer, onTap: () {});
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                AnswerButton(answer, onTap: () {}),
+                SizedBox(height: 8),
+              ],
+            );
           }),
         ],
       ),
