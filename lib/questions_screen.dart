@@ -22,7 +22,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
         children: [
           Text(currentQuestion.question, style: TextStyle(color: Colors.white)),
           SizedBox(height: 20),
-          ...currentQuestion.answers.map((answer) {
+          ...currentQuestion.getShuffledAnswer().map((answer) {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
