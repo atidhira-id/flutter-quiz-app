@@ -12,6 +12,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
+  final List<Map> userAnswers = [];
   var activeScreen = 'start-screen';
 
   void startQuizScreen() {
@@ -20,11 +21,19 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void selectAnswer(int questionNumber, String answer) {
+    final Map<String, dynamic> answerMap = {
+      'num': questionNumber,
+      'answer': answer,
+    };
+    userAnswers.add(answerMap);
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWidget;
     if (activeScreen == 'questions-screen') {
-      screenWidget = const QuestionsScreen();
+      screenWidget = QuestionsScreen(onSelectAnswer: selectAnswer);
     } else {
       screenWidget = StartScreen(handleStart: startQuizScreen);
     }
