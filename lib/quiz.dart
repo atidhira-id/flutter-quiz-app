@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/data/questions.dart';
 import 'package:quiz_app/questions_screen.dart';
 import 'package:quiz_app/start_screen.dart';
 
@@ -12,7 +13,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final List<Map> userAnswers = [];
+  Map<int, String> userAnswers = {};
   var activeScreen = 'start-screen';
 
   void startQuizScreen() {
@@ -22,11 +23,14 @@ class _QuizState extends State<Quiz> {
   }
 
   void selectAnswer(int questionNumber, String answer) {
-    final Map<String, dynamic> answerMap = {
-      'num': questionNumber,
-      'answer': answer,
-    };
-    userAnswers.add(answerMap);
+    userAnswers[questionNumber] = answer;
+
+    if (userAnswers.length == questions.length) {
+      setState(() {
+        userAnswers = {};
+        activeScreen = 'start-screen';
+      });
+    }
   }
 
   @override
