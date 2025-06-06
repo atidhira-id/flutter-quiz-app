@@ -43,3 +43,22 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Additional Flutter and platform-specific ignores
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Generated.xcconfig
+ios/Runner.xcworkspace/
+macos/Pods/
+macos/.symlinks/
+macos/Flutter/Generated.xcconfig
+linux/cmake-build-*/
+windows/CMakeFiles/
+windows/build/
+windows/runner/Runner.exe
+
+# VS Code
+.vscode/
+
+# Environment variables
+.env
