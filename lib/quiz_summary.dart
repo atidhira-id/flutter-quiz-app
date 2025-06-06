@@ -8,38 +8,65 @@ class QuizSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children:
-          summaryData.map((data) {
-            return Row(
-              children: [
-                Text(
-                  (data.questionNumber + 1).toString(),
-                  style: TextStyle(color: Colors.white),
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Text(
-                        data.question,
-                        style: TextStyle(color: Colors.white),
+    return SizedBox(
+      height: 400,
+      child: SingleChildScrollView(
+        child: Column(
+          children:
+              summaryData.map((data) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(width: 20),
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 6,
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        data.userAnswer,
-                        style: TextStyle(color: Colors.white),
+                      decoration: BoxDecoration(
+                        color:
+                            data.correctAnswer == data.userAnswer
+                                ? Colors.blue
+                                : Colors.red,
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        data.correctAnswer,
-                        style: TextStyle(color: Colors.white),
+                      child: Text(
+                        (data.questionNumber + 1).toString(),
+                        style: TextStyle(color: Colors.black),
                       ),
-                    ],
-                  ),
-                ),
-              ],
-            );
-          }).toList(),
+                    ),
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            data.question,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            "Your answer: ${data.userAnswer}",
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 215, 131, 131),
+                            ),
+                          ),
+                          Text(
+                            "Correct answer: ${data.correctAnswer}",
+                            style: TextStyle(
+                              color: const Color.fromARGB(255, 122, 183, 232),
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: 20),
+                  ],
+                );
+              }).toList(),
+        ),
+      ),
     );
   }
 }
