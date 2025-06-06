@@ -46,6 +46,7 @@ class ResultScreen extends StatelessWidget {
           Text(
             'You answered $correctAnswerCount out of $questionCount questions correctly!',
             style: TextStyle(fontSize: 18, color: Colors.white),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           QuizSummary(summaryData),
