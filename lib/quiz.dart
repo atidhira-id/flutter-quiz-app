@@ -36,22 +36,26 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     Widget screenWidget;
-    if (activeScreen == 'questions-screen') {
-      screenWidget = QuestionsScreen(onSelectAnswer: selectAnswer);
-    } else if (activeScreen == 'result-screen') {
-      screenWidget = ResultScreen(
-        userAnswers: userAnswers,
-        handleRestart: () {
-          userAnswers = [];
-          switchScreen('questions-screen');
-        },
-      );
-    } else {
-      screenWidget = StartScreen(
-        handleStart: () {
-          switchScreen('questions-screen');
-        },
-      );
+
+    switch (activeScreen) {
+      case 'questions-screen':
+        screenWidget = QuestionsScreen(onSelectAnswer: selectAnswer);
+        break;
+      case 'result-screen':
+        screenWidget = ResultScreen(
+          userAnswers: userAnswers,
+          handleRestart: () {
+            userAnswers = [];
+            switchScreen('questions-screen');
+          },
+        );
+        break;
+      default:
+        screenWidget = StartScreen(
+          handleStart: () {
+            switchScreen('questions-screen');
+          },
+        );
     }
 
     return MaterialApp(
